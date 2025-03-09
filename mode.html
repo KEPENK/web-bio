@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Watching Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+        .video-player {
+            margin-bottom: 1rem;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+        .video-options {
+            margin-bottom: 1rem;
+        }
+        .video-option {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+        .video-option.selected {
+            border-color: #28a745;
+        }
+        .alternative-links {
+            margin-top: 1rem;
+        }
+        .alternative-links a {
+            display: block;
+            color: #0066cc;
+            text-decoration: none;
+            margin: 0.5rem 0;
+        }
+        .alternative-links a:hover {
+            text-decoration: underline;
+        }
+        .ad-space {
+            margin-top: 1rem;
+            border: 1px dashed #ccc;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Watching Platform</h1>
+        <div class="video-player">
+            <video id="video-player" controls>
+                <source src="video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-options">
+            <div class="video-option" data-video="video1.mp4">Video 1</div>
+            <div class="video-option" data-video="video2.mp4">Video 2</div>
+            <div class="video-option" data-video="video3.mp4">Video 3</div>
+        </div>
+        <div class="alternative-links">
+            <h2>Alternative Links</h2>
+            <a href="https://alternative1.com" target="_blank">Alternative Link 1</a>
+            <a href="https://alternative2.com" target="_blank">Alternative Link 2</a>
+        </div>
+        <div class="ad-space">
+            <h2>Ad Space</h2>
+            <p>Your ad could be here!</p>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.video-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.video-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                const videoSource = this.getAttribute('data-video');
+                document.getElementById('video-player').src = videoSource;
+                document.getElementById('video-player').load();
+            });
+        });
+    </script>
+</body>
+</html>
